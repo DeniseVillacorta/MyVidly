@@ -196,6 +196,14 @@
     <Compile Include="Migrations\202008021021255_ApplyDataAnnotations.designer.cs">
       <DependentUpon>202008021021255_ApplyDataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008021109544_AddNametoMembershipType.cs" />
+    <Compile Include="Migrations\202008021109544_AddNametoMembershipType.designer.cs">
+      <DependentUpon>202008021109544_AddNametoMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008021111437_RepopulateMembershipType.cs" />
+    <Compile Include="Migrations\202008021111437_RepopulateMembershipType.designer.cs">
+      <DependentUpon>202008021111437_RepopulateMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -298,6 +306,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008021021255_ApplyDataAnnotations.resx">
       <DependentUpon>202008021021255_ApplyDataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008021109544_AddNametoMembershipType.resx">
+      <DependentUpon>202008021109544_AddNametoMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008021111437_RepopulateMembershipType.resx">
+      <DependentUpon>202008021111437_RepopulateMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
