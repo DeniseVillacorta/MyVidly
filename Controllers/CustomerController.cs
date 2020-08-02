@@ -20,7 +20,7 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomer().SingleOrDefault(c => c.CustomerId == id);
+            var customer = GetCustomer().SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
             {
@@ -35,8 +35,8 @@ namespace Vidly.Controllers
         {
             return new List<Customer>
             {
-                new Customer {CustomerId = 1, CustomerName = "Denise Villacorta"},
-                new Customer {CustomerId = 2, CustomerName = "Ravni Arador"},
+                new Customer {Id = 1, Name = "Denise Villacorta"},
+                new Customer {Id = 2, Name = "Ravni Arador"},
             };
 
         }

@@ -22,8 +22,8 @@ namespace Vidly.Controllers
         {
             return new List<Movie>
             {
-               new Movie {MovieName = "Harry Potter"},
-               new Movie {MovieName = "Home Alone"}
+               new Movie {Name = "Harry Potter"},
+               new Movie {Name = "Home Alone"}
             };
 
         }

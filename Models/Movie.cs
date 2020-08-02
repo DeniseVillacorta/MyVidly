@@ -7,7 +7,7 @@ namespace Vidly.Models
 {
     public class Movie
     {
-        public int MovieID { get; set; }
-        public string MovieName { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

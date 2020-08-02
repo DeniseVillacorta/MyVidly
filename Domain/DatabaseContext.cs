@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Vidly.Models;
 
 namespace Vidly.Domain
 {
@@ -17,5 +18,7 @@ namespace Vidly.Domain
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public DbSet<Customer> Customers { get; set; }
     }
 }
