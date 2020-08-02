@@ -14,6 +14,12 @@ namespace Vidly
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "CustomerView",
+               url: "Customer/Details/{id}",
+               defaults: new { controller = "Customer", action = "Details", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

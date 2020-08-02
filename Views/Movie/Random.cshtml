@@ -4,19 +4,28 @@
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>@Model.Movie.MovieName</h2>
+<p></p>
+<h2> Customer </h2>
 
 @if (Model.Customers.Count == 0)
 {
-    <text>No customers available.</text>
+    <text> No customers available.</text>
 }
 else
 {
-    <ul>
-        @foreach (var customer in Model.Customers)
+<table class="table table-bordered table-hover">
+   
+        <tr>
+            <th> Customers Name</th>
+        </tr>
+
+    @foreach (var customer in Model.Customers)
+    {
         {
-            <li>@customer.CustomerName</li>
+            <tr>
+                <td>@Html.ActionLink(customer.CustomerName, "Details", new { id = customer.CustomerId })</td>
+            </tr>
         }
-    </ul>
+    }
+</table>
 }
