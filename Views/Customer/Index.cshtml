@@ -3,7 +3,7 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p></p>
+
 <h2>Customers</h2>
 <p></p>
 @if (!Model.Any())
@@ -12,24 +12,46 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="Customers" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th> Customers Name</th>
                 <th> Discount Rate</th>
+                <th> Delete</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach (var customer in Model)
             {
-            <tr>
-                <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id }, null)</td>
-                <td>@customer.MembershipType.Name</td>
-            </tr>
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td> <button data-customer-id="@customer.Id" type="button" class="btn btn-link js-delete"> Delete </button></td>
+                </tr>
             }
         </tbody>
 
     </table>
 }
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#Customers .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        url: "/Api/Customers/DeleteCustomer?id=" + button.attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parent("tr").remove();
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
