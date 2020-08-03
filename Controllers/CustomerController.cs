@@ -17,11 +17,12 @@ namespace Vidly.Controllers
         {
             _context = new DatabaseContext();
         }
-
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
+
+
         // GET: Customer
         public ViewResult Index()
         {
@@ -29,6 +30,56 @@ namespace Vidly.Controllers
 
             return View(indexCustomers);
         }
+
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if (customer.Id == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDB = _context.Customers.Single(c => c.Id == customer.Id);
+
+                customerInDB.Name = customer.Name;
+                customerInDB.CustomerBday = customer.CustomerBday;
+                customerInDB.MembershipTypeId = customer.MembershipTypeId;
+                customerInDB.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customer");
+        }
+
+
+        public ActionResult New()
+        {
+            var membershipType = _context.MembershipType.ToList();
+            var viewModel = new CustomerViewModel
+            {
+                MembershipTypes = membershipType
+            };
+            return View("CustomerForm", viewModel);
+        }
+
+       
+        public ActionResult Edit(int id)
+        {
+            var customers = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customers == null)
+
+                return HttpNotFound();
+            else
+            {
+                var viewModel = new CustomerViewModel
+                {
+                    Customer = customers,
+                    MembershipTypes = _context.MembershipType.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
+        }
+
 
         public ActionResult Details(int id)
         {
@@ -41,7 +92,6 @@ namespace Vidly.Controllers
 
             return View(customer);
 
-
         }
     }
-} 
+}
