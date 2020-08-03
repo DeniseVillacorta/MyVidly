@@ -10679,3 +10679,8 @@ th {
 .card-title, .card-header {
   color: inherit;
 }
+
+.field-validation-error {
+    color: firebrick;
+}
+

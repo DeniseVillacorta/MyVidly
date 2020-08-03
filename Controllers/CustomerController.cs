@@ -26,15 +26,26 @@ namespace Vidly.Controllers
         // GET: Customer
         public ViewResult Index()
         {
-            var indexCustomers = _context.Customers.Include(c => c.MembershipType).ToList();
+            var indexCustomer = _context.Customers.Include(c => c.MembershipType).ToList();
 
-            return View(indexCustomers);
+            return View(indexCustomer);
         }
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipType.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
             else
@@ -56,6 +67,7 @@ namespace Vidly.Controllers
             var membershipType = _context.MembershipType.ToList();
             var viewModel = new CustomerViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipType
             };
             return View("CustomerForm", viewModel);
