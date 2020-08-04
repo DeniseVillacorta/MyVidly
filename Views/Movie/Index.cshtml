@@ -43,18 +43,24 @@ else
 {
     <script>
         $(document).ready(function () {
+
+            $("#Movies").DataTable();
+
             $("#Movies .js-delete").on("click", function () {
                 var button = $(this);
-                if (confirm("Are you sure?")) {
-                    $.ajax({
-                        url: "/API/Movies/DeleteMovie?id=" + button.attr("data-movie-id"),
-                        method: "DELETE",
-                        success: function () {
-                            button.parent("tr").remove();
-                            location.reload();
-                        }
-                    });
-                }
+
+                bootbox.confirm("Are you sure?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/API/Movies/DeleteMovie?id=" + button.attr("data-movie-id"),
+                            method: "DELETE",
+                            success: function () {
+                                button.parent("tr").remove();
+                                location.reload();
+                            }
+                        });
+                    }
+                })
             });
         });
     </script>
