@@ -24,6 +24,7 @@ namespace Vidly.Controllers
 
 
         // GET: Customer
+        [Authorize]
         public ViewResult Index()
         {
             return View();
