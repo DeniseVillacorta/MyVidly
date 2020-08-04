@@ -39,7 +39,10 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#Customers .js-delete").on("click", function () {
+
+            $("#Customers").DataTable();
+
+            $("#Customers").on("click", ".js-delete", function () {
                 var button = $(this);
 
                 bootbox.confirm("Are you sure?", function (result) {
