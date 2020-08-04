@@ -6,13 +6,8 @@
 
 <h2>Customers</h2>
 <p></p>
-@if (!Model.Any())
-{
-    <text>No customers available.</text>
-}
-else
-{
-    <table id="Customers" class="table table-bordered table-hover">
+
+<table id="Customers" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th> Customers Name</th>
@@ -22,17 +17,10 @@ else
         </thead>
 
         <tbody>
-            @foreach (var customer in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td>
-                    <td> <button data-customer-id="@customer.Id" type="button" class="btn btn-link js-delete"> Delete </button></td>
-                </tr>
-            }
+           
         </tbody>
 
-    </table>
+ </table>
 }
 
 @section scripts
@@ -40,7 +28,30 @@ else
     <script>
         $(document).ready(function () {
 
-            $("#Customers").DataTable();
+            var table = $("#Customers").DataTable({
+                ajax: {
+                    url: "/API/Customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href=' /customers/edit/" + customer.id + "'>" + customer.name + "</a>"
+                        }
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-link js-delete' data-customer-id=" + data + "> Delete </button>";
+                        }
+                    }
+                ]
+            });
+        });
 
             $("#Customers").on("click", ".js-delete", function () {
                 var button = $(this);
@@ -61,6 +72,6 @@ else
 
                 });
             });
-        });
+       
     </script>
 }

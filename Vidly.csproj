@@ -196,6 +196,7 @@
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Domain\DatabaseContext.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
