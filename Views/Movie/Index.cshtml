@@ -17,23 +17,45 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="Movies" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th> Movie Name </th>
                 <th> Genre </th>
+                <th> Delete </th>
             </tr>
         </thead>
 
         <tbody>
             @foreach (var movie in Model)
             {
-            <tr>
-                <td>@Html.ActionLink(movie.Name, "Edit", "Movie", new { id = movie.ID }, null)</td>
-                <td>@movie.Genre.GenreName</td>
-            </tr>
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "Edit", "Movie", new { id = movie.ID }, null)</td>
+                    <td>@movie.Genre.GenreName</td>
+                    <td> <button data-movie-id="@movie.ID" type="button" class="btn btn-link js-delete"> Delete </button></td>
+                </tr>
             }
         </tbody>
 
     </table>
+}
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#Movies .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("Are you sure?")) {
+                    $.ajax({
+                        url: "/API/Movies/DeleteMovie?id=" + button.attr("data-movie-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parent("tr").remove();
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 }
