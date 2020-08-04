@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,13 +20,16 @@ namespace Vidly.Controllers.API
             _context = new DatabaseContext();
         }
 
-        //GET /API/Customers
+        //GET /API/Movies
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies
+                   .Include(m => m.Genre)
+                   .ToList()
+                   .Select(Mapper.Map<Movie, MovieDto>); 
         }
 
-        //GET /API/Customers/1
+        //GET /API/Movies/1
         public IHttpActionResult GetMoviesr(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.ID == id);
@@ -36,7 +40,7 @@ namespace Vidly.Controllers.API
             return Ok(Mapper.Map<Movie, MovieDto>(movie));
         }
 
-        // POST /API/Customers
+        // POST /API/Movies
         [HttpPost]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
@@ -52,7 +56,7 @@ namespace Vidly.Controllers.API
             return Created(new Uri(Request.RequestUri + "/" + movie.ID), movieDto);
         }
 
-        // PUT /API/Customers
+        // PUT /API/Movies
         [HttpPut]
         public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
         {
@@ -71,7 +75,7 @@ namespace Vidly.Controllers.API
             return Ok();
         }
 
-        // DELETE /API/Customers
+        // DELETE /API/Movies
         [HttpDelete]
         public IHttpActionResult DeleteMovie(int id)
         {

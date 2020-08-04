@@ -11,12 +11,6 @@
 @Html.ActionLink("New Movie", "New", "Movie", null, new { @class = "btn btn-primary" })
 <p></p>
 
-@if (!Model.Any())
-{
-    <text>No movies available.</text>
-}
-else
-{
     <table id="Movies" class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -27,25 +21,44 @@ else
         </thead>
 
         <tbody>
-            @foreach (var movie in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(movie.Name, "Edit", "Movie", new { id = movie.ID }, null)</td>
-                    <td>@movie.Genre.GenreName</td>
-                    <td> <button data-movie-id="@movie.ID" type="button" class="btn btn-link js-delete"> Delete </button></td>
-                </tr>
-            }
+            
         </tbody>
 
     </table>
 }
+
 @section scripts
 {
     <script>
         $(document).ready(function () {
 
-            $("#Movies").DataTable();
+            $("#Movies").DataTable({
+                ajax: {
+                    url: "/API/Movies",
+                    dataSrc: ""
+                },
 
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, movie) {
+                            return "<a href=' /movies/edit/" + movie.id + "'>" + movie.name + "</a>"
+                        }
+                    },
+                    {
+                        data: "genre.genreName"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-link js-delete' data-customer-id=" + data + "> Delete </button>";
+                        }
+                    }
+                ]
+
+            });
+            
+           
             $("#Movies .js-delete").on("click", function () {
                 var button = $(this);
 
@@ -63,5 +76,7 @@ else
                 })
             });
         });
-    </script>
+</script> 
 }
+
+

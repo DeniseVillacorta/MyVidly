@@ -8,19 +8,18 @@
 <p></p>
 
 <table id="Customers" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th> Customers Name</th>
-                <th> Discount Rate</th>
-                <th> Delete</th>
-            </tr>
-        </thead>
+    <thead>
+        <tr>
+            <th> Customers Name</th>
+            <th> Discount Rate</th>
+            <th> Delete</th>
+        </tr>
+    </thead>
 
-        <tbody>
-           
-        </tbody>
+    <tbody>
+    </tbody>
 
- </table>
+</table>
 }
 
 @section scripts
@@ -53,25 +52,26 @@
             });
         });
 
-            $("#Customers").on("click", ".js-delete", function () {
-                var button = $(this);
+        $("#Customers").on("click", ".js-delete", function () {
+            var button = $(this);
 
-                bootbox.confirm("Are you sure?", function (result) {
+            bootbox.confirm("Are you sure?", function (result) {
 
-                    if (result) {
+                if (result) {
 
-                        $.ajax ({
-                            url: "/Api/Customers/DeleteCustomer?id=" + button.attr("data-customer-id"),
-                            method: "DELETE",
-                            success: function () {
-                                button.parent("tr").remove();
-                                location.reload();
-                            }
-                        });
-                    }
+                    $.ajax({
+                        url: "/Api/Customers/DeleteCustomer?id=" + button.attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parent("tr").remove();
+                            location.reload();
+                        }
+                    });
+                }
 
-                });
             });
-       
+        });
+
     </script>
 }
+
