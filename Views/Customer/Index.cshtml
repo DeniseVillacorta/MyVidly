@@ -3,7 +3,8 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<p></p>
+<p></p>
 <h2>Customers</h2>
 <p></p>
 
@@ -20,7 +21,7 @@
     </tbody>
 
 </table>
-}
+
 
 @section scripts
 {
@@ -36,7 +37,7 @@
                     {
                         data: "name",
                         render: function (data, type, customer) {
-                            return "<a href=' /customers/edit/" + customer.id + "'>" + customer.name + "</a>"
+                            return "<a href=' /Customer/Edit/" + customer.id + "'>" + customer.name + "</a>"
                         }
                     },
                     {
