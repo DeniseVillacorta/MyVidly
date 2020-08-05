@@ -76,6 +76,8 @@ namespace Vidly.Controllers
 
             return View("ReadOnlyList");
         }
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
 
