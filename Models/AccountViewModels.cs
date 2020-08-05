@@ -10,6 +10,10 @@ namespace Vidly.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
         [Display(Name = "Phone")]
         public string Phone { get; set; }
     }
@@ -69,8 +73,13 @@ namespace Vidly.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name ="Phone")]
+        [Display(Name = "Phone")]
+        [StringLength(90, ErrorMessage = "The {0} must be at least {2} characters long.")]
         public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
 
         [Required]
         [EmailAddress]
