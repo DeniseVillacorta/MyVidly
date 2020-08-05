@@ -17,7 +17,8 @@ namespace Vidly.ViewModel
         public string DrivingLicense { get; set; }
 
         [Required]
-        [Display(Name = "Phone")]
-        public string Phone { get; set; }
+        [Display(Name = "Phone Number")]
+        [StringLength(90)]
+        public string RegisterPhone { get; set; }
     }
 }

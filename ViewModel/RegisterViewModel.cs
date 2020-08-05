@@ -9,9 +9,9 @@ namespace Vidly.ViewModel
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Phone")]
+        [Display(Name = "Phone Number")]
         [StringLength(90, ErrorMessage = "The {0} must be at least {2} characters long.")]
-        public string Phone { get; set; }
+        public string RegisterPhone { get; set; }
 
         [Required]
         [Display(Name = "Driving License")]

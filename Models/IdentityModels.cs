@@ -11,6 +11,7 @@ namespace Vidly.Models
     public class ApplicationUser : IdentityUser
     {
         public string DrivingLicense { get; internal set; }
+        public string RegisterPhone { get; internal set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
