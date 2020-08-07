@@ -8,6 +8,7 @@
         public override void Up()
         {
             AddColumn("dbo.Movie", "NumberAvailable", c => c.Byte(nullable: false));
+            Sql("UPDATE Movies SET NumberAvailable = NumberInStock");
         }
         
         public override void Down()
