@@ -23,5 +23,6 @@ namespace Vidly.Domain
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipType { get; set; }
         public DbSet<Genre> Genre { get; set; }
+        public DbSet<NewRentals> NewRentals { get; set; }
     }
 }
