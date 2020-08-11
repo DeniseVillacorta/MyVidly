@@ -64,13 +64,15 @@
                 ]
             });
 
-            $("#Movies .js-delete").on("click", function () {
+            $("#Movies").on("click", ".js-delete", function () {
                 var button = $(this);
 
                 bootbox.confirm("Are you sure?", function (result) {
+
                     if (result) {
+
                         $.ajax({
-                            url: "/API/Movies/DeleteMovie?id=" + button.attr("data-movie-id"),
+                            url: "/Api/Movies/DeleteMovie?id=" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
                                 button.parent("tr").remove();
@@ -78,6 +80,7 @@
                             }
                         });
                     }
+
                 });
             });
         });

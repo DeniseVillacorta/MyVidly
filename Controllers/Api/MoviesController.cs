@@ -24,13 +24,14 @@ namespace Vidly.Controllers.API
         public IEnumerable<MovieDto> GetMovies()
         {
             return _context.Movies
-                   .Include(m => m.Genre)
-                   .ToList()
-                   .Select(Mapper.Map<Movie, MovieDto>); 
+             .Include(m => m.Genre)
+            .ToList()
+            .Select(Mapper.Map<Movie, MovieDto>);
+
         }
 
         //GET /API/Movies/1
-        public IHttpActionResult GetMoviesr(int id)
+        public IHttpActionResult GetMovies(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.ID == id);
 
