@@ -38,7 +38,7 @@
 
             var vm = {
              
-                movieIds: []
+                MovieIds: []
             };
 
             var customers = new Bloodhound({
@@ -60,7 +60,7 @@
                 display: 'name',
                 source: customers
             }).on("typeahead: select", function (e, customer) {
-                vm.customerId = customer.id;
+                vm.CustomerId = customer.id;
             });
 
             var movie = new Bloodhound({
@@ -86,7 +86,7 @@
 
                 $('#movie').typeahead("val", "");
 
-                vm.movieIds.push(movie.id);
+                vm.MovieIds.push(movie.id);
             });
 
             $("#NewRental").submit(function (e) {
@@ -94,7 +94,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "/api/newRentals",
+                    url: "/Api/NewRentals",
                     method: "post",
                     data: vm
                 })

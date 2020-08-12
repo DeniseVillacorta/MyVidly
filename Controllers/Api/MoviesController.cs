@@ -24,7 +24,8 @@ namespace Vidly.Controllers.API
         public IEnumerable<MovieDto> GetMovies(string query = null)
         {
             var moviesQuery = _context.Movies
-             .Include(m => m.Genre);
+             .Include(m => m.Genre)
+             .Where(m => m.NumberOfStock > 0);
 
              if (!string.IsNullOrWhiteSpace(query))
                 moviesQuery = moviesQuery.Where(m => m.Name.StartsWith(query));
