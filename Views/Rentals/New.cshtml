@@ -38,7 +38,6 @@
 
             var vm = {
 
-
                 MovieIds: []
             };
 
@@ -60,7 +59,7 @@
                 name: 'customers',
                 display: 'name',
                 source: customers
-            }).on("typeahead: select", function (e, customer) {
+            }).on("typeahead:select", function (e, customer) {
                 vm.CustomerId = customer.id;
             });
 
@@ -95,7 +94,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "/api/NewRentals",
+                    url: "/api/NewRentals?customerId=" + vm.CustomerId + "&movieId=" + vm.MovieIds,
                     method: "post",
                     data: vm
                 })
