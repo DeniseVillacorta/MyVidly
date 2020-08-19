@@ -19,12 +19,12 @@ namespace Vidly.Controllers.Api
         }
 
         [HttpPost]
-        public IHttpActionResult CreateNewRentals(int customerId, int movieId)
+        public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == customerId);
-            var movies = _context.Movies.Where(m => m.ID == (movieId)).ToList();
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == newRental.CustomerId);
+            var movies = _context.Movies.Where(m => newRental.MovieIds.Contains(m.ID)).ToList();
 
-            foreach(var movie in movies)
+            foreach (var movie in movies)
             {
                 if (movie.NumberOfStock == 0)
                     return BadRequest("Movie is not available.");
