@@ -273,13 +273,9 @@
     <Compile Include="Migrations\202008070633500_AddNewRentals.designer.cs">
       <DependentUpon>202008070633500_AddNewRentals.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008070636475_AddNumberAvailableinMovies.cs" />
-    <Compile Include="Migrations\202008070636475_AddNumberAvailableinMovies.designer.cs">
-      <DependentUpon>202008070636475_AddNumberAvailableinMovies.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008070834035_FollowUpForNumberAvailable.cs" />
-    <Compile Include="Migrations\202008070834035_FollowUpForNumberAvailable.designer.cs">
-      <DependentUpon>202008070834035_FollowUpForNumberAvailable.cs</DependentUpon>
+    <Compile Include="Migrations\202008241231535_RemoveNumberAvailable.cs" />
+    <Compile Include="Migrations\202008241231535_RemoveNumberAvailable.designer.cs">
+      <DependentUpon>202008241231535_RemoveNumberAvailable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -699,11 +695,8 @@
     <EmbeddedResource Include="Migrations\202008070633500_AddNewRentals.resx">
       <DependentUpon>202008070633500_AddNewRentals.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008070636475_AddNumberAvailableinMovies.resx">
-      <DependentUpon>202008070636475_AddNumberAvailableinMovies.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008070834035_FollowUpForNumberAvailable.resx">
-      <DependentUpon>202008070834035_FollowUpForNumberAvailable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008241231535_RemoveNumberAvailable.resx">
+      <DependentUpon>202008241231535_RemoveNumberAvailable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -741,6 +734,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

@@ -7,13 +7,13 @@ namespace Vidly.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class FollowUpForNumberAvailable : IMigrationMetadata
+    public sealed partial class RemoveNumberAvailable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FollowUpForNumberAvailable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveNumberAvailable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008070834035_FollowUpForNumberAvailable"; }
+            get { return "202008241231535_RemoveNumberAvailable"; }
         }
         
         string IMigrationMetadata.Source

@@ -106,8 +106,6 @@
 
                 submitHandler: function () {
 
-                    e.preventDefault();
-
                     $.ajax({
                         url: "/api/NewRentals?customerId=" + vm.CustomerId + "&movieId=" + vm.MovieIds,
                         method: "post",
@@ -125,6 +123,7 @@
                         .fail(function () {
                             toastr.error("An Error occured. Please try again")
                         });
+                    return false;
                 }
             });
 
