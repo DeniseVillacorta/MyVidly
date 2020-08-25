@@ -1,0 +1,31 @@
+﻿
+@model Vidly.ViewModel.RandomViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p></p>
+<h2> Customer </h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <text> No customers available.</text>
+}
+else
+{
+<table class="table table-bordered table-hover">
+   
+        <tr>
+            <th> Customers Name</th>
+        </tr>
+
+    @foreach (var customer in Model.Customers)
+    {
+        {
+            <tr>
+                <td>@Html.ActionLink(customer.CustomerName, "Details", new { id = customer.CustomerId })</td>
+            </tr>
+        }
+    }
+</table>
+}
