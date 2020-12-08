@@ -280,6 +280,10 @@
     <Compile Include="Migrations\202008241231535_RemoveNumberAvailable.designer.cs">
       <DependentUpon>202008241231535_RemoveNumberAvailable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012080331440_TrialMigration.cs" />
+    <Compile Include="Migrations\202012080331440_TrialMigration.designer.cs">
+      <DependentUpon>202012080331440_TrialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -706,6 +710,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008241231535_RemoveNumberAvailable.resx">
       <DependentUpon>202008241231535_RemoveNumberAvailable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012080331440_TrialMigration.resx">
+      <DependentUpon>202012080331440_TrialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
